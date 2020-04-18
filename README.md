@@ -62,13 +62,12 @@ console.log(decode(claimCode));
 If all you really want to do is create a claim code with this library, then there's a script to help with that:
 
 ```sh
-./bin/generate-claim-code.sh
+./bin/generate-printer.sh
 
-// → {
-//  device: '121745933cb16b91',
-//  secret: 876353015208,
-//  claimCode: '5rpd-r2oo-spnc-2v00'
-// }
+// →
+//      address: 6e49511322a487a0
+//       secret: 491205363585
+//   claim code: 5ew7-4qhz-0y0t-9200
 ```
 
 ## Maintenance: Releasing a Version
