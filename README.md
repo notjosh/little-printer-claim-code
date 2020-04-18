@@ -70,3 +70,13 @@ If all you really want to do is create a claim code with this library, then ther
 //  claimCode: '5rpd-r2oo-spnc-2v00'
 // }
 ```
+
+## Maintenance: Releasing a Version
+
+Publishing works via GitHub actions, so. Create a new version (+tag, etc), which should get pushed to GitHub automatically.
+
+```
+npm version
+```
+
+Then open GitHub, and create (+ publish) a new release. This will trigger everything else that needs doing.

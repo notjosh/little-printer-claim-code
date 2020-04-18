@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "postversion": "git push && git push --tags",
     "prepublish": "yarn build",
     "lint": "eslint . --cache --ext js,jsx,ts,tsx,md",
     "test": "yarn lint && yarn jest"
