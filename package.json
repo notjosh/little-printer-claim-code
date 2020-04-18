@@ -1,9 +1,24 @@
 {
   "name": "little-printer-claim-code",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "helper utility to generate (and process) claim codes for a Berg Little Printer",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
+  "homepage": "https://github.com/notjosh/little-printer-claim-code",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notjosh/little-printer-claim-code.git"
+  },
+  "keywords": [
+    "little printer",
+    "little",
+    "printer",
+    "berg"
+  ],
   "scripts": {
+    "build": "tsc",
+    "prepublish": "yarn build",
     "lint": "eslint . --cache --ext js,jsx,ts,tsx,md",
     "test": "yarn lint && yarn jest"
   },
