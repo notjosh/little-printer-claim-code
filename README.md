@@ -76,7 +76,7 @@ If all you really want to do is create a claim code with this library, then ther
 Publishing works via GitHub actions, so. Create a new version (+tag, etc), which should get pushed to GitHub automatically.
 
 ```sh
-npm version
+yarn version
 ```
 
 Then open GitHub, and create (+ publish) a new release. This will trigger everything else that needs doing.
