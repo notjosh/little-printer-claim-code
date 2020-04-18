@@ -22,7 +22,7 @@ const deviceAddressInt = parseInt(deviceAddress, 16) & 0xffffff;
 // secret only known to printer and claim code, randomly generate
 const secret = 0xeb1ba696a0;
 
-console.log(encode(deviceAddressInt, 0xeb1ba696a0));
+console.log(encode(deviceAddressInt, secret));
 // → 'n5ry-p6x6-kth7-7hc4'
 ```
 
@@ -61,7 +61,7 @@ console.log(decode(claimCode));
 
 If all you really want to do is create a claim code with this library, then there's a script to help with that:
 
-```
+```sh
 ./bin/generate-claim-code.sh
 
 // → {
@@ -75,7 +75,7 @@ If all you really want to do is create a claim code with this library, then ther
 
 Publishing works via GitHub actions, so. Create a new version (+tag, etc), which should get pushed to GitHub automatically.
 
-```
+```sh
 npm version
 ```
 
