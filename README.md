@@ -6,7 +6,7 @@ Ported from [this Python implementation](https://github.com/nordprojects/sirius)
 
 Mostly I expect this to be used to encode devices into generating a claim code (via `encode`), but it also supports unpacking a claim code into parameters (`unpack`), and decoding a device key from a claim code (`decode`);
 
-## Usage
+## Library Usage
 
 ### `encode`
 
@@ -54,5 +54,19 @@ console.log(decode(claimCode));
 // → {
 //   device: 74565,
 //   key: <Buffer d5 0b 90 4f 43 7c 1d 2e 87 c3 10 57 49 40 9e 3d>
+// }
+```
+
+## Generate a Claim Code
+
+If all you really want to do is create a claim code with this library, then there's a script to help with that:
+
+```
+./bin/generate-claim-code.sh
+
+// → {
+//  device: '121745933cb16b91',
+//  secret: 876353015208,
+//  claimCode: '5rpd-r2oo-spnc-2v00'
 // }
 ```
