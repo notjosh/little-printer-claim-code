@@ -38,9 +38,9 @@ const CC_ENCODE_LIST = [
   'z',
 ];
 
-const encode = (deviceArgument: number, secretArgument: number): ClaimCode => {
-  const device = BigInt(deviceArgument) & BigInt(0xffffff);
-  const secret = BigInt(secretArgument) & BigInt(0xffffffffff);
+const encode = (deviceArgument: bigint, secretArgument: bigint): ClaimCode => {
+  const device = deviceArgument & BigInt(0xffffff);
+  const secret = secretArgument & BigInt(0xffffffffff);
 
   const value = device | (secret << BigInt(24));
   const crc = crc16(bigintToBuf(value), 0xffff);

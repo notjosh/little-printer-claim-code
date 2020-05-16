@@ -17,9 +17,9 @@
     "berg"
   ],
   "scripts": {
-    "build": "tsc",
+    "dist": "tsc",
     "postversion": "git push && git push --tags",
-    "prepublish": "yarn build",
+    "prepublish": "yarn dist",
     "lint": "eslint . --cache --ext js,jsx,ts,tsx,md",
     "test": "yarn lint && yarn jest"
   },
@@ -31,11 +31,11 @@
     "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-plugin-markdown": "^2.0.0-alpha.0",
-    "jest": "^25.3.0",
+    "jest": "^26.0.1",
     "prettier": "^2.0.4",
-    "ts-jest": "^25.4.0",
+    "ts-jest": "^26.0.0",
     "typescript": "^3.8.3"
   }
 }

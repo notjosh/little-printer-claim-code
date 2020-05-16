@@ -81,7 +81,7 @@ const decode = (claimCode: ClaimCode): DecodeResult => {
   const key = generateLinkKey(packedSecret);
 
   return {
-    device: unpacked.device,
+    deviceXor: unpacked.deviceXor,
     key,
   };
 };

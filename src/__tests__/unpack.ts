@@ -7,8 +7,8 @@ describe('unpack', () => {
       it(`unpacks claim code: '${fixture.claimCode}'`, () => {
         const result = unpack(fixture.claimCode);
 
-        expect(result.device).toEqual(fixture.device);
-        expect(result.secret).toEqual(fixture.secret);
+        expect(result.deviceXor).toEqual(BigInt(fixture.deviceXor));
+        expect(result.secret).toEqual(BigInt(fixture.secret));
       });
     });
   });
