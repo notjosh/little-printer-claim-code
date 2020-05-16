@@ -24,6 +24,7 @@
     "test": "yarn lint && yarn jest"
   },
   "dependencies": {
+    "big-integer": "^1.6.48",
     "crc": "^3.8.0"
   },
   "devDependencies": {

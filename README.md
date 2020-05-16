@@ -14,11 +14,11 @@ Turn device parameters into a claim code:
 
 ```ts
 // generate a device address - from MAC address, or randomly, whatever
-const deviceAddress = BigInt('0x46dbd1efebe85023');
+const deviceAddress = bigInt('46dbd1efebe85023', 16);
 const xor = hardwareXorFromDeviceAddress(deviceAddress);
 
 // secret only known to printer and claim code, randomly generated
-const secret = BigInt('0xbd38b46918');
+const secret = bigInt('bd38b46918', 16);
 
 console.log(encode(xor, secret));
 // → '3ddc-tf5n-e4d4-2r7k'
