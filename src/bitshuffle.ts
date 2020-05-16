@@ -1,7 +1,10 @@
 import bigintToBuf from './bigintToBuf';
+import bigInt, { BigInteger } from 'big-integer';
 
 // the "hardware xor" is a 3-byte representation of the device_address.
-const hardwareXorFromDeviceAddress = (deviceAddress: bigint): bigint => {
+const hardwareXorFromDeviceAddress = (
+  deviceAddress: BigInteger
+): BigInteger => {
   const buffer = bigintToBuf(deviceAddress);
 
   const bits = Array(3).fill(0);
@@ -11,7 +14,7 @@ const hardwareXorFromDeviceAddress = (deviceAddress: bigint): bigint => {
 
   const result = (bits[2] << 16) | (bits[1] << 8) | bits[0];
 
-  return BigInt(result);
+  return bigInt(result);
 };
 
 export { hardwareXorFromDeviceAddress };

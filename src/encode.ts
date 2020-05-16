@@ -1,3 +1,5 @@
+import bigInt, { BigInteger } from 'big-integer';
+
 import crc16 from './crc16';
 
 import { ClaimCode } from '.';
@@ -38,22 +40,25 @@ const CC_ENCODE_LIST = [
   'z',
 ];
 
-const encode = (deviceArgument: bigint, secretArgument: bigint): ClaimCode => {
-  const device = deviceArgument & BigInt(0xffffff);
-  const secret = secretArgument & BigInt(0xffffffffff);
+const encode = (
+  deviceArgument: BigInteger,
+  secretArgument: BigInteger
+): ClaimCode => {
+  const device = deviceArgument.and(bigInt(0xffffff));
+  const secret = secretArgument.and(bigInt(0xffffffffff));
 
-  const value = device | (secret << BigInt(24));
+  const value = device.or(secret.shiftLeft(bigInt(24)));
   const crc = crc16(bigintToBuf(value), 0xffff);
 
-  let cc = BigInt(value) | (BigInt(crc) << BigInt(64));
+  let cc = bigInt(value).or(bigInt(crc).shiftLeft(bigInt(64)));
   let text = '';
   let i = 16;
 
   while (i > 0) {
-    const index = Number(cc & BigInt(0x1f));
+    const index = Number(cc.and(bigInt(0x1f)));
     const char = CC_ENCODE_LIST[index];
     text = char + text;
-    cc = cc >> BigInt(5);
+    cc = cc.shiftRight(bigInt(5));
 
     // insert `-` every 4 characters
     if (i % 4 == 1 && i != 1) {

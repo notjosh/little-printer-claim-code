@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import bigInt from 'big-integer';
 
 import { ClaimCode, DecodeResult } from '.';
 
@@ -68,7 +69,7 @@ const decode = (claimCode: ClaimCode): DecodeResult => {
   const unpacked = unpack(claimCode);
 
   // Generate our own CRC from the raw_value, and confirm it matches the extracted crc
-  const packable = BigInt(unpacked.value) & BigInt('0xffffffffffffffff');
+  const packable = bigInt(unpacked.value).and(bigInt('ffffffffffffffff', 16));
   const dataForCrc = bigintToBuf(packable);
   const serverCrc = crc16(dataForCrc);
 
@@ -77,7 +78,7 @@ const decode = (claimCode: ClaimCode): DecodeResult => {
   }
 
   // Pack the 40-bit number as a LE long long, and then truncate back to 5 bytes
-  const packedSecret = bigintToBuf(BigInt(unpacked.secret)).slice(0, 5);
+  const packedSecret = bigintToBuf(bigInt(unpacked.secret)).slice(0, 5);
   const key = generateLinkKey(packedSecret);
 
   return {

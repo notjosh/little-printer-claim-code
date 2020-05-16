@@ -1,3 +1,5 @@
+import bigInt from 'big-integer';
+
 import unpack from '../unpack';
 import fixtures from './__data__/devices';
 
@@ -7,8 +9,8 @@ describe('unpack', () => {
       it(`unpacks claim code: '${fixture.claimCode}'`, () => {
         const result = unpack(fixture.claimCode);
 
-        expect(result.deviceXor).toEqual(BigInt(fixture.deviceXor));
-        expect(result.secret).toEqual(BigInt(fixture.secret));
+        expect(result.deviceXor).toEqual(bigInt(fixture.deviceXor));
+        expect(result.secret).toEqual(bigInt(fixture.secret));
       });
     });
   });

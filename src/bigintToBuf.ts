@@ -1,5 +1,7 @@
-const bigintToBuf = (bigint: BigInt): Buffer => {
-  let hex = BigInt(bigint).toString(16);
+import bigInt, { BigInteger } from 'big-integer';
+
+const bigintToBuf = (bigint: BigInteger): Buffer => {
+  let hex = bigInt(bigint).toString(16);
   if (hex.length % 2) {
     hex = '0' + hex;
   }

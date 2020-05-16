@@ -1,3 +1,5 @@
+import { BigInteger } from 'big-integer';
+
 import decode from './decode';
 import encode from './encode';
 import unpack from './unpack';
@@ -5,15 +7,15 @@ import unpack from './unpack';
 export type ClaimCode = string;
 
 export type DecodeResult = {
-  deviceXor: bigint;
+  deviceXor: BigInteger;
   key: Buffer;
 };
 
 export type UnpackResult = {
-  deviceXor: bigint;
-  secret: bigint;
+  deviceXor: BigInteger;
+  secret: BigInteger;
   crc: number;
-  value: bigint;
+  value: BigInteger;
 };
 
 export { decode, encode, unpack };

@@ -1,3 +1,5 @@
+import bigInt from 'big-integer';
+
 import { ClaimCode, UnpackResult } from '.';
 
 // This dictionary maps base32 digits to five-bit values.
@@ -53,7 +55,7 @@ const unpack = (claimCode: ClaimCode): UnpackResult => {
     throw new Error('claim codes should be 16 characters');
   }
 
-  let value = BigInt(0);
+  let value = bigInt(0);
 
   for (let i = 0; i < clean.length; i++) {
     const char = clean[i].toUpperCase();
@@ -61,20 +63,20 @@ const unpack = (claimCode: ClaimCode): UnpackResult => {
     if (Object.keys(CLAIMCODE_BASE32_DICT).includes(char)) {
       // we need:
       // value += CLAIMCODE_BASE32_DICT[c] * (32 ** (15 - i))
-      const code = BigInt(CLAIMCODE_BASE32_DICT[char]);
-      const mult = BigInt(32 ** (15 - i));
-      value += code * mult;
+      const code = bigInt(CLAIMCODE_BASE32_DICT[char]);
+      const mult = bigInt(32 ** (15 - i));
+      value = value.add(code.multiply(mult));
     } else {
       throw new Error(`${char} is not a valid character`);
     }
   }
 
   // 24 bit hardware address xor
-  const deviceXor = value & BigInt(0xffffff);
+  const deviceXor = value.and(bigInt(0xffffff));
   // 40 bit secret
-  const secret = (value >> BigInt(24)) & BigInt(0xffffffffff);
+  const secret = value.shiftRight(bigInt(24)).and(bigInt(0xffffffffff));
   // 16 bit crc
-  const crc = value >> BigInt(64);
+  const crc = value.shiftRight(bigInt(64));
 
   return {
     deviceXor,
