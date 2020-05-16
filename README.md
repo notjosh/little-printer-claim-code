@@ -69,6 +69,19 @@ If all you really want to do is create a claim code with this library, then ther
 //  claim code: 7p6x-n5ce-r4fv-070h
 ```
 
+## Unpack a Claim Code
+
+Unpack a claim code into xor + secret:
+
+```sh
+./bin/unpack-claim-code.sh feed-this-only-pork
+
+// →
+//   deviceXor: eb5712
+//      secret: cd4039ad03
+//         crc: 735a
+```
+
 ## Maintenance: Releasing a Version
 
 Publishing works via GitHub actions, so. Create a new version (+tag, etc), which should get pushed to GitHub automatically.
