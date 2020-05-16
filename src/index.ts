@@ -1,5 +1,6 @@
 import { BigInteger } from 'big-integer';
 
+import { hardwareXorFromDeviceAddress } from './bitshuffle';
 import decode from './decode';
 import encode from './encode';
 import unpack from './unpack';
@@ -18,4 +19,4 @@ export type UnpackResult = {
   value: BigInteger;
 };
 
-export { decode, encode, unpack };
+export { decode, encode, hardwareXorFromDeviceAddress, unpack };
