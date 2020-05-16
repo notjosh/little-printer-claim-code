@@ -1,6 +1,6 @@
 {
   "name": "little-printer-claim-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "helper utility to generate (and process) claim codes for a Berg Little Printer",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
