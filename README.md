@@ -14,16 +14,14 @@ Turn device parameters into a claim code:
 
 ```ts
 // generate a device address - from MAC address, or randomly, whatever
-const deviceAddress = '000d6f000273c164';
+const deviceAddress = BigInt('0x46dbd1efebe85023');
+const xor = hardwareXorFromDeviceAddress(deviceAddress);
 
-// only the last 24 bits of the device address are used
-const deviceAddressInt = parseInt(deviceAddress, 16) & 0xffffff;
+// secret only known to printer and claim code, randomly generated
+const secret = BigInt('0xbd38b46918');
 
-// secret only known to printer and claim code, randomly generate
-const secret = 0xeb1ba696a0;
-
-console.log(encode(deviceAddressInt, secret));
-// → 'n5ry-p6x6-kth7-7hc4'
+console.log(encode(xor, secret));
+// → '3ddc-tf5n-e4d4-2r7k'
 ```
 
 ### `unpack`
@@ -35,9 +33,9 @@ const claimCode = 'c1zp-g2ec-sqqh-28t5';
 
 console.log(unpack(claimCode));
 // → {
-//   device: 74565,
-//   secret: 444691369455,
-//   crc: 22655,
+//   deviceXor: 74565n,
+//   secret: 444691369455n,
+//   crc: 22655n,
 //   value: 417918447673048574272325n
 // }
 ```
@@ -52,7 +50,7 @@ const claimCode = 'c1zp-g2ec-sqqh-28t5';
 console.log(decode(claimCode));
 
 // → {
-//   device: 74565,
+//   deviceXor: 74565n,
 //   key: <Buffer d5 0b 90 4f 43 7c 1d 2e 87 c3 10 57 49 40 9e 3d>
 // }
 ```
@@ -65,9 +63,10 @@ If all you really want to do is create a claim code with this library, then ther
 ./bin/generate-printer.sh
 
 // →
-//      address: 6e49511322a487a0
-//       secret: 491205363585
-//   claim code: 5ew7-4qhz-0y0t-9200
+//     address: 5f297a46f118187
+//      secret: da156dc11d
+//         xor: 11541520
+//  claim code: 7p6x-n5ce-r4fv-070h
 ```
 
 ## Maintenance: Releasing a Version
