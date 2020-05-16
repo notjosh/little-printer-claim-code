@@ -70,15 +70,15 @@ const unpack = (claimCode: ClaimCode): UnpackResult => {
   }
 
   // 24 bit hardware address xor
-  const device = value & BigInt(0xffffff);
+  const deviceXor = value & BigInt(0xffffff);
   // 40 bit secret
   const secret = (value >> BigInt(24)) & BigInt(0xffffffffff);
   // 16 bit crc
   const crc = value >> BigInt(64);
 
   return {
-    device: Number(device),
-    secret: Number(secret),
+    deviceXor,
+    secret,
     crc: Number(crc),
     value: value,
   };

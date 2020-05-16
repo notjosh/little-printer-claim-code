@@ -1,7 +1,7 @@
 #!/bin/bash
 
 [ ! -d node_modules ] && yarn
-[ ! -d dist ] && yarn build
+[ ! -d dist ] && yarn dist
 node -e " \
 const encode = require('./dist/encode').default; \
 const address = '$(openssl rand -hex 8)'; \

@@ -5,15 +5,15 @@ import unpack from './unpack';
 export type ClaimCode = string;
 
 export type DecodeResult = {
-  device: number;
+  deviceXor: bigint;
   key: Buffer;
 };
 
 export type UnpackResult = {
-  device: number;
-  secret: number;
+  deviceXor: bigint;
+  secret: bigint;
   crc: number;
-  value: BigInt;
+  value: bigint;
 };
 
 export { decode, encode, unpack };
